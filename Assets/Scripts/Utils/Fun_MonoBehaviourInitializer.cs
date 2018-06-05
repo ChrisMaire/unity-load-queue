@@ -31,6 +31,7 @@ public class Fun_MonoBehaviourInitializer : MonoBehaviour {
 
     private IEnumerator DoAllAwakes()
     {
+        System.DateTime startTime = System.DateTime.Now;
         while (awakeQueue.Count > 0)
         {
             if(awakeQueue[0] != null)
@@ -39,8 +40,9 @@ public class Fun_MonoBehaviourInitializer : MonoBehaviour {
             }
             awakeQueue.RemoveAt(0);
 
-            if (Time.unscaledDeltaTime > maxFrameTime)
+            if ((System.DateTime.Now - startTime).TotalSeconds > maxFrameTime)
             {
+                startTime = System.DateTime.Now;
                 yield return null;
             }
         }
@@ -61,6 +63,7 @@ public class Fun_MonoBehaviourInitializer : MonoBehaviour {
             yield return null;
         }
 
+        System.DateTime startTime = System.DateTime.Now;
         while (startQueue.Count > 0)
         {
             if(startQueue[0] != null)
@@ -69,8 +72,9 @@ public class Fun_MonoBehaviourInitializer : MonoBehaviour {
             }
             startQueue.RemoveAt(0);
 
-            if (Time.unscaledDeltaTime > maxFrameTime)
+            if ((System.DateTime.Now - startTime).TotalSeconds > maxFrameTime)
             {
+                startTime = System.DateTime.Now;
                 yield return null;
             }
         }
