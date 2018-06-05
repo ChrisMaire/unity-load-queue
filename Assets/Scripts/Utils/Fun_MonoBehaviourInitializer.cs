@@ -39,7 +39,7 @@ public class Fun_MonoBehaviourInitializer : MonoBehaviour {
             }
             awakeQueue.RemoveAt(0);
 
-            if (Time.deltaTime > maxFrameTime)
+            if (Time.unscaledDeltaTime > maxFrameTime)
             {
                 yield return null;
             }
@@ -69,7 +69,7 @@ public class Fun_MonoBehaviourInitializer : MonoBehaviour {
             }
             startQueue.RemoveAt(0);
 
-            if (Time.deltaTime > maxFrameTime)
+            if (Time.unscaledDeltaTime > maxFrameTime)
             {
                 yield return null;
             }

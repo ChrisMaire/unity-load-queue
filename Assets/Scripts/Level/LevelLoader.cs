@@ -68,8 +68,6 @@ public class LevelLoader : MonoBehaviour
             yield return null;
         }
 
-        //need to delay a tiny bit so frames are sorted out and the fade can happen smoothly
-        yield return null;
         yield return null;
 
         transitioner.Run(SceneTransitionDirection.Out, 1f, false);

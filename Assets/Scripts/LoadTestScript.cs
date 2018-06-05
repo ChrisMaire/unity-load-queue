@@ -5,13 +5,13 @@ using UnityEngine;
 public class LoadTestScript : Fun_MonoBehaviour {
     public override void AwakeInit()
     {
-        base.StartInit();
-        Debug.Log("Started");
+        base.AwakeInit();
+        Debug.Log("Awakened");
     }
 
     public override void StartInit()
     {
         base.StartInit();
-        Debug.Log("Awakened");
+        Debug.Log("Started");
     }
 }
