@@ -3,21 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Fun_MonoBehaviour : MonoBehaviour {
-    private void Awake()
+    private QueueYieldInstruction startQueue = new QueueYieldInstruction();
+
+    public void AllowStart()
     {
-        Fun_MonoBehaviourInitializer.QueueAwake(this);
+        startQueue.Waiting = false;
     }
 
-    public virtual void AwakeInit()
-    {
-    }
-
-    private void Start()
+    protected virtual IEnumerator Start()
     {
         Fun_MonoBehaviourInitializer.QueueStart(this);
-    }
-
-    public virtual void StartInit()
-    {
+        yield return startQueue;
     }
 }
