@@ -8,8 +8,10 @@ How it works:
   - loads a loading scene
   - starts loading the new scene.
 - As the new scene loads asyncronously:
-  - classes that inherit from Fun_Monobehaviour put their startup logic that would normally go in Start/Awake into StartInit and AwakeInit (if you have suggestions for better naming please...lemme know).
-  -Fun_Monobehaviour queues those init calls up in Fun_MonoBehaviourInitializer.
-- When the level is fully loaded, it calls Run on the initializer, and starts running through all the now queued awake/start calls.
-- The now-queued AwakeInit and StartInit calls are spread across frames so animations continue to play.
-- When all the AwakeInit and StartInit calls are done, we advance, unload the loading screen, and fade in.
+  - classes that inherit from Fun_Monobehaviour have a custom yield instruction that just waits for a value to be set on them that halts their start from running
+  -Fun_Monobehaviour queues those yield instructions up in Fun_MonoBehaviourInitializer.
+- When the level is fully loaded, it calls Run on the initializer, and starts running through all the now queued start calls.
+- The Start coroutines are now spread across frames so animations continue to play.
+- When all the Start calls are done, we advance, unload the loading screen, and fade in.
+
+Note that this has no solution for spreading out Awakes now; because Awake can't be a coroutine, there's not a nice easy solution like there was for start.
