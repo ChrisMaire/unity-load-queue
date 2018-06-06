@@ -5,6 +5,15 @@ using UnityEngine;
 public class Fun_MonoBehaviour : MonoBehaviour {
     private QueueYieldInstruction startQueue = new QueueYieldInstruction();
 
+    protected virtual void Awake()
+    {
+        Fun_MonoBehaviourInitializer.QueueAwake(this);
+    }
+
+    public virtual void AwakeInit()
+    {
+    }
+
     public void AllowStart()
     {
         startQueue.Waiting = false;
