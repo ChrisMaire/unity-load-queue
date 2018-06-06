@@ -14,14 +14,12 @@ public class Fun_MonoBehaviour : MonoBehaviour {
     {
     }
 
-    public void AllowStart()
-    {
-        startQueue.Waiting = false;
-    }
-
-    protected virtual IEnumerator Start()
+    protected virtual void Start()
     {
         Fun_MonoBehaviourInitializer.QueueStart(this);
-        yield return startQueue;
+    }
+
+    public virtual void StartInit()
+    {
     }
 }

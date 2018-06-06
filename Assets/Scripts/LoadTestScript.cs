@@ -8,9 +8,8 @@ public class LoadTestScript : Fun_MonoBehaviour {
         Debug.Log("Awakened on frame " + Fun_MonoBehaviourInitializer.Frame);
     }
 
-    protected override IEnumerator Start()
+    public override void StartInit()
     {
-        yield return base.Start();
         Debug.Log("Started on frame " + Fun_MonoBehaviourInitializer.Frame);
     }
 }

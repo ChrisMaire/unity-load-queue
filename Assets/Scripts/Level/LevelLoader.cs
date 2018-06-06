@@ -38,6 +38,8 @@ public class LevelLoader : MonoBehaviour
             yield return null;
         }
 
+        Fun_MonoBehaviourInitializer.Initialized = false;
+
         transitioner.Run(SceneTransitionDirection.In, 1f, false);
         yield return new WaitForSecondsRealtime(1.1f);
 

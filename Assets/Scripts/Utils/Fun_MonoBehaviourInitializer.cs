@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -53,7 +54,6 @@ public class Fun_MonoBehaviourInitializer : MonoBehaviour {
             }
             awakeQueue.RemoveAt(0);
 
-            Debug.Log((System.DateTime.Now - startTime).TotalSeconds);
             if ((System.DateTime.Now - startTime).TotalSeconds > maxFrameTime)
             {
                 startTime = System.DateTime.Now;
@@ -82,7 +82,7 @@ public class Fun_MonoBehaviourInitializer : MonoBehaviour {
         {
             if(startQueue[0] != null)
             {
-                startQueue[0].AllowStart();
+                startQueue[0].StartInit();
             }
             startQueue.RemoveAt(0);
 
@@ -132,7 +132,7 @@ public class Fun_MonoBehaviourInitializer : MonoBehaviour {
         }
         else
         {
-            newBehaviour.AllowStart();
+            newBehaviour.StartInit();
         }
     }
 }
@@ -148,9 +148,9 @@ public static class InitializeInEditor
 
     private static void HandlePlayModeChanged(PlayModeStateChange state)
     {
+        Fun_MonoBehaviourInitializer.Initialized = false;
         if (state == PlayModeStateChange.EnteredPlayMode)
         {
-            Fun_MonoBehaviourInitializer.Initialized = false;
             Time.timeScale = 0f;
             Fun_MonoBehaviourInitializer initializer = Fun_MonoBehaviourInitializer.Run();
             initializer.OnInitializationComplete.AddListener(LoadEnded);
